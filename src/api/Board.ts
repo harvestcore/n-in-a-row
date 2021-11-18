@@ -5,18 +5,18 @@ import { Chip, ChipType } from '../models/Chip';
  */
 class Board {
     /**
-     * The size of the board.
+     * The _size of the board.
      */
-    size: number;
+    _size: number;
 
     /**
      * Array with the chips.
      */
-    positions: Array<Chip>;
+    _positions: Array<Chip>;
 
-    constructor(size: number) {
-        this.size = size;
-        this.positions = new Array(size * size);
+    constructor(_size: number) {
+        this._size = _size;
+        this._positions = new Array(_size * _size);
 
         // TODO: Remove this line. This is here just for dev purposes.
         this._fillBoard();
@@ -26,17 +26,8 @@ class Board {
      * Get the board as a string.
      * @returns The board as a string.
      */
-    getBoard(): string {
-        let board = "";
-        for (let i = 0; i < this.size; ++i) {
-            for (let j = 0; j < this.size; ++j) {
-                const chip = this.getChip(i, j);
-                board += chip.value();
-            }
-            board += '-';
-        }
-
-        return board;
+    getBoard(): Array<string> {
+        return this._positions.map(chip => chip.value());
     }
 
     /**
@@ -46,7 +37,7 @@ class Board {
      * @param y Y position of the chip in the board. 
      */
     setChip(chipType: ChipType, x: number, y: number): void {
-        this.positions[x * this.size + y] = new Chip(chipType)
+        this._positions[x * this._size + y] = new Chip(chipType)
     }
 
     /**
@@ -57,7 +48,7 @@ class Board {
      * @returns The chip or null.
      */
     getChip(x: number, y: number): Chip {
-        return this.positions[x * this.size + y];
+        return this._positions[x * this._size + y];
     }
 
     /**
@@ -66,8 +57,8 @@ class Board {
      * @see ChipType.E
      */
     _fillBoard(): void {
-        for (const i of this.positions.keys()) {
-            this.positions[i] = new Chip(ChipType.E);
+        for (const i of this._positions.keys()) {
+            this._positions[i] = new Chip(ChipType.E);
         }
     }
 }
