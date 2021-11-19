@@ -5,29 +5,51 @@ import { Chip, ChipType } from '../models/Chip';
  */
 class Board {
     /**
-     * The _size of the board.
+     * The size of the board.
      */
-    _size: number;
+    private size: number;
+
+    /**
+     * The amount of chips to connect to win.
+     */
+    private n: number;
 
     /**
      * Array with the chips.
      */
-    _positions: Array<Chip>;
+    private positions: Array<Chip>;
 
-    constructor(_size: number) {
-        this._size = _size;
-        this._positions = new Array(_size * _size);
+    /**
+     * 
+     * @param size The size of the board.
+     * @param n 
+     */
+    constructor(size: number, n: number) {
+        this.n = n;
+        this.size = size;
+        this.positions = new Array(size * size);
 
         // TODO: Remove this line. This is here just for dev purposes.
         this._fillBoard();
     }
 
     /**
+     * Fill board with empty chips.
+     * 
+     * @see ChipType.E
+     */
+    private _fillBoard(): void {
+        for (const i of this.positions.keys()) {
+            this.positions[i] = new Chip(ChipType.E);
+        }
+    }
+
+    /**
      * Get the board as a string.
      * @returns The board as a string.
      */
-    getBoard(): Array<string> {
-        return this._positions.map(chip => chip.value());
+    public get board(): Array<string> {
+        return this.positions.map(chip => chip.value());
     }
 
     /**
@@ -36,8 +58,8 @@ class Board {
      * @param x X position of the chip in the board.
      * @param y Y position of the chip in the board. 
      */
-    setChip(chipType: ChipType, x: number, y: number): void {
-        this._positions[x * this._size + y] = new Chip(chipType)
+    public setChip(chipType: ChipType, x: number, y: number): void {
+        this.positions[x * this.size + y] = new Chip(chipType)
     }
 
     /**
@@ -47,19 +69,8 @@ class Board {
      * @param y Y position of the chip in the board.
      * @returns The chip or null.
      */
-    getChip(x: number, y: number): Chip {
-        return this._positions[x * this._size + y];
-    }
-
-    /**
-     * Fill board with empty chips.
-     * 
-     * @see ChipType.E
-     */
-    _fillBoard(): void {
-        for (const i of this._positions.keys()) {
-            this._positions[i] = new Chip(ChipType.E);
-        }
+    public getChip(x: number, y: number): Chip {
+        return this.positions[x * this.size + y];
     }
 }
 
