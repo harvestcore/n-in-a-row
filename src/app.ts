@@ -1,16 +1,16 @@
-import express from 'express';
+import express from "express";
 
-import { Board } from './api/Board';
+import { Board } from "./api/Board";
 
 const app = express();
 const port = 3000;
 
-app.get('/', (_, res) => {
+app.get("/", (_, res) => {
     const size = 5;
     const board = new Board(size);
     res.send({
         size,
-        board: board.getBoard()
+        board: board.getBoard(),
     });
 });
 

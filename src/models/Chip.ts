@@ -13,16 +13,19 @@ class Chip {
 
     /**
      * Get the chip value as a string.
-     * 
+     *
      * @see ChipType
-     * 
+     *
      * @returns The chip value.
      */
     value(): string {
-        switch(this.type){   
-            case ChipType.X: return "X";
-            case ChipType.O: return "O";
-            case ChipType.E: return "_";
+        switch (this.type) {
+            case ChipType.X:
+                return "X";
+            case ChipType.O:
+                return "O";
+            case ChipType.E:
+                return "_";
         }
     }
 }
@@ -44,10 +47,7 @@ enum ChipType {
     /**
      * Chip with no value.
      */
-    E
+    E,
 }
 
-export {
-    Chip,
-    ChipType
-}
+export { Chip, ChipType };

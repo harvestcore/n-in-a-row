@@ -1,4 +1,4 @@
-import { Chip, ChipType } from '../models/Chip';
+import { Chip, ChipType } from "../models/Chip";
 
 /**
  * Defines a board to play 'N in a row'.
@@ -34,15 +34,15 @@ class Board {
      * Add a chip to the board.
      * @param chipType The type of the chip.
      * @param x X position of the chip in the board.
-     * @param y Y position of the chip in the board. 
+     * @param y Y position of the chip in the board.
      */
     setChip(chipType: ChipType, x: number, y: number): void {
-        this._positions[x * this._size + y] = new Chip(chipType)
+        this._positions[x * this._size + y] = new Chip(chipType);
     }
 
     /**
      * Get a chip from the board.
-     * 
+     *
      * @param x X position of the chip in the board.
      * @param y Y position of the chip in the board.
      * @returns The chip or null.
@@ -53,7 +53,7 @@ class Board {
 
     /**
      * Fill board with empty chips.
-     * 
+     *
      * @see ChipType.E
      */
     _fillBoard(): void {
@@ -63,6 +63,4 @@ class Board {
     }
 }
 
-export {
-    Board
-}
+export { Board };
