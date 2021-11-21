@@ -16,7 +16,6 @@ class Player {
      *
      * @param name Name of the player.
      * @param chipType Type of chip assigned to the player.
-     * @param wins True if player won, false if player lost.
      */
     constructor(name: String, chipType: ChipType) {
         this.name = name;
